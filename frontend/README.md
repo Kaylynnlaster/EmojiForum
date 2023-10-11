@@ -4,15 +4,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Project Structure
 The frontend folder is composed of the following important directories
-`/frontend`
-|-- `/src`
-|   |-- `/api`
-|   |-- `/components`
-|   |-- `/styles`
-|-- `/public`
-|   |-- `index.html`
-|-- `package.json`
-|-- `README.md`
+
+`/frontend`<br>
+|-- `/src`<br>
+|   |-- `/api`<br>
+|   |-- `/components`<br>
+|   |-- `/styles`<br>
+|-- `/public`<br>
+|   |-- `index.html`<br>
+|-- `package.json`<br>
+|-- `README.md`<br>
 
 ### /components
 The components directory contains import pieces used within our application. An example of important pieces are 
