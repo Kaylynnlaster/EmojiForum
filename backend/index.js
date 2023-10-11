@@ -1,8 +1,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors');
 
 const app = express()
-
+// Use CORS middleware
+app.use(cors());
 const UserRouter = require('./api/User')
 
 app.use(express.json())
