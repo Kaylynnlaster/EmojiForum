@@ -1,6 +1,6 @@
 
 const portNumber = 3000;
-const backendURI = `http://localhost:${portNumber}`;
+const backendURI = `http://localhost:${portNumber}/user`;
 
 
 const UserApi = {
@@ -8,16 +8,23 @@ const UserApi = {
     getUserByCredentials: async (credentials) => {
         try {
             console.log(credentials);
-            const response = await fetch(`${backendURI}/userEndpoint`);
+            const response = await fetch(`${backendURI}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(credentials)
+            });
 
             if(!response.ok){
                 throw new Error(`HTTP error! Status: ${response.status}`)
             }
 
-
+            
             // Deal with the data being returned from the backend here
 
             const data = await response.json();
+            // setUser(data);
             console.log(data);
             
             
@@ -28,8 +35,8 @@ const UserApi = {
 
     createUser: async (userInfo) => {
         try {
-            
-            const response = await fetch(`${backendURI}/userEndpoint`, {
+            console.log(`${backendURI}/signup`)
+            const response = await fetch(`${backendURI}/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
