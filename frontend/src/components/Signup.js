@@ -3,8 +3,8 @@ import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import EmojiPicker from 'emoji-picker-react';
-import { FcApproval, FcCancel } from 'react-icons/fc'
 import { Link } from 'react-router-dom';
+import UserApi from '../api/UserApi';
 
 
 export const Signup = () => {
@@ -67,8 +67,11 @@ export const Signup = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        console.log(userInfo);
 
 
+        // Call the user api method here
+        UserApi.createUser(userInfo);
 
         // Clear the user info state and clear the input fields
         setUserInfo({
