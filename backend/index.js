@@ -4,9 +4,11 @@ const mongoose = require('mongoose')
 const app = express()
 
 const UserRouter = require('./api/User')
+const ThreadRouter = require('./api/Thread')
 
 app.use(express.json())
 
+app.use('/user/:id', ThreadRouter)
 app.use('/user', UserRouter)
 
 //routes
