@@ -9,15 +9,7 @@ Emoji forum is a platform for users to engage in discussions, share information,
 - Node.js
 
 ## Project Setup
-The setup consists of two parts which are the backend and frontend. The order of which service you choose to start does not matter but the application will not function properly if both services are not running together.
-
-### Frontend
-1. Navigate to the frontend directory
-`cd frontend/`
-2. Install any dependencies for the frontend
-`npm i`
-3. Start the development server with npm
-`npm start`
+The setup consists of two parts which are the backend and frontend. The order of which service you choose to start does matter so please be sure to follow the backend setup first and then continue on to the frontend setup.
 
 ### Backend
 1. Navigate to the backend directory
@@ -26,3 +18,15 @@ The setup consists of two parts which are the backend and frontend. The order of
 `npm i`
 3. Start the development server
 `npm run dev`
+
+### Frontend
+1. Navigate to the frontend directory
+`cd frontend/`
+2. Install any dependencies for the frontend
+`npm i`
+3. Start the development server with npm
+`npm start`
+4. If prompted to start dev server on different port, Enter yes
+
+After following these steps, you should be ready to go!
+

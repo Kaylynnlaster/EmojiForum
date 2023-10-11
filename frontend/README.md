@@ -3,6 +3,72 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Project Structure
+The frontend folder is composed of the following important directories
+
+`/frontend`<br>
+|-- `/src`<br>
+|   |-- `/api`<br>
+|   |-- `/components`<br>
+|   |-- `/styles`<br>
+|-- `/public`<br>
+|   |-- `index.html`<br>
+|-- `package.json`<br>
+|-- `README.md`<br>
+
+### /components
+The components directory contains import pieces used within our application. An example of important pieces are 
+- Login.js: *Represents the user-facing login view*
+- Signup.js: *Represents the user-facing signin view*
+
+In essence, the components directory contains the different "views" that the user will encounter. E.g. Homepage, Threads, replies, etc.
+
+### /api
+The api directory is in charge of following code splitting practices by separating server functions/methods from the views. In other words, the files in the **/api** directory contain methods that are directly in charge with calling the backend endpoints and returning that data to it's corresponding view. 
+
+An example would be the following:
+***UserApi.js***
+```
+const UserApi = {
+
+    getUserByCredentials: async (credentials, setFeedbackMessage) => {
+        try {
+            console.log(credentials);
+            const response = await fetch(`${backendURI}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(credentials)
+            });
+
+            if(!response.ok){
+                throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+
+            
+            // Deal with the data being returned from the backend here
+
+            const data = await response.json();
+            // setUser(data);
+            console.log(data);
+            console.log(data.message);
+            setFeedbackMessage(data.message);
+            
+            
+        } catch (error) {
+            console.error("Error in getUserByCredentials:", error);
+        }
+    }
+```
+The following code is in charge of accessing the /user/login endpoint of the backend service. From there it receives the data and returns it in a way that the application needs. 
+
+An example of this method being called can be found in the components directory
+
+***/components/login.js***
+``` 
+    // Call the api and the login method here
+    UserApi.getUserByCredentials(userInfo, setFeedbackMessage);
+```
 
 
 ## Available Scripts
