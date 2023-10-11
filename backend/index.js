@@ -14,7 +14,7 @@ app.get('/', (req,res) => {
     res.send('hello Node game')
 })
 
-mongoose.connect('mongodb+srv://kayannalaster:PASSWORDHERE@cluster0.poaa9nu.mongodb.net/UserDB?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://kayannalaster:Animazing2023@cluster0.poaa9nu.mongodb.net/UserDB?retryWrites=true&w=majority')
 .then(() => {
     console.log('connected')
     app.listen(3000, () => {
