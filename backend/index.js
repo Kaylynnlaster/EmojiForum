@@ -6,9 +6,11 @@ const app = express()
 // Use CORS middleware
 app.use(cors());
 const UserRouter = require('./api/User')
+const ThreadRouter = require('./api/Thread')
 
 app.use(express.json())
 
+app.use('/user/:id', ThreadRouter)
 app.use('/user', UserRouter)
 
 //routes
