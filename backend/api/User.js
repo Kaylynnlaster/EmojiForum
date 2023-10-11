@@ -79,19 +79,45 @@ router.post("/signup", async (req, res) => {
 
 //login
 router.post("/login", (req, res) => {
-    const { username, password } = req.body;
-    let result = users.filter(
-        (user) => user.username === username && user.password === password
-    );
-    if (result.length !== 1) {
-        return res.json({
-            error_message: "Incorrect credentials",
-        });
+    let { password, username } = req.body;
+    password = password.trim();
+    username = username.trim();
+
+    if (username == "" || password == "") {
+        res.json({
+            status: "Failed",
+            message: "Emtpy fields"
+        })
     }
-    res.json({
-        message: "Login successfully",
-        id: result[0].id,
-    });
+    else {
+        User.find({username})
+        .then(data => {
+            if(data) {
+                const hashedPassword = data[0].password;
+                bcrypt.compare(password, hashedPassword).then(result => {
+                    if(result) {
+                        res.json({
+                            status: "Success",
+                            message: "Signin successful",
+                            data: data
+                        })
+                    } else {
+                        res.json({
+                            status: "Failed",
+                            message: "Wrong password"
+                        })
+                    }
+                })
+                .catch(err => {
+                    res.json({
+                        status: "Failed",
+                        message: "An error while checking for existing users"
+                    })
+                })
+            }
+            
+        })
+    }
 });
 
 module.exports = router;
