@@ -2,11 +2,9 @@ import { useRef, useState } from 'react';
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import EmojiPicker from 'emoji-picker-react';
-import { FcApproval, FcCancel } from 'react-icons/fc'
 import { Link } from 'react-router-dom';
+import UserApi from '../api/UserApi';
 
 
 export const Signup = () => {
@@ -69,8 +67,11 @@ export const Signup = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        console.log(userInfo);
 
 
+        // Call the user api method here
+        UserApi.createUser(userInfo);
 
         // Clear the user info state and clear the input fields
         setUserInfo({
@@ -97,7 +98,7 @@ export const Signup = () => {
             <Container className='d-flex justify-content-center align-items-center'>
                 <Container>
                     <Form className="p-5" onSubmit={handleSubmit}>
-                        <h1>Need an account?</h1>
+                        <h1>Need an account❓</h1>
                         <Form.Text>You can create an account here.</Form.Text>
                         <Form.Group className='my-5'>
                             <Form.FloatingLabel label="Username">
@@ -132,8 +133,8 @@ export const Signup = () => {
                             <Form.Text className='px-2'>Password must be at least 8 characters with at least one digit</Form.Text>
                         </Form.Group>
                         <Form.Text>
-                            Already have an account?{' '}
-                            <Link to="/">Login here</Link>
+                        Already have an account?🤔{' '}
+                            <Link to="/login">Login here.</Link>
                         </Form.Text>
                         <div className='my-3'>
                             <Button className='w-50' type="submit">Sign up</Button>

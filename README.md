@@ -25,4 +25,4 @@ The setup consists of two parts which are the backend and frontend. The order of
 2. Install dependencies for the backend
 `npm i`
 3. Start the development server
-`npm start`
+`npm run dev`
