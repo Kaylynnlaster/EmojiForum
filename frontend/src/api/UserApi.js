@@ -5,7 +5,7 @@ const backendURI = `http://localhost:${portNumber}/user`;
 
 const UserApi = {
 
-    getUserByCredentials: async (credentials) => {
+    getUserByCredentials: async (credentials, setFeedbackMessage) => {
         try {
             console.log(credentials);
             const response = await fetch(`${backendURI}/login`, {
@@ -26,6 +26,8 @@ const UserApi = {
             const data = await response.json();
             // setUser(data);
             console.log(data);
+            console.log(data.message);
+            setFeedbackMessage(data.message);
             
             
         } catch (error) {
@@ -33,7 +35,7 @@ const UserApi = {
         }
     },
 
-    createUser: async (userInfo) => {
+    createUser: async (userInfo, setFeedbackMessage) => {
         try {
             console.log(`${backendURI}/signup`)
             const response = await fetch(`${backendURI}/signup`, {
@@ -49,8 +51,7 @@ const UserApi = {
             }
 
             const data = await response.json()
-
-            console.log(data);
+            setFeedbackMessage(data.message);
 
             // You can either return the data or pass a callback function into this function
             /* 

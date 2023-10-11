@@ -2,12 +2,17 @@ import { useRef, useState } from 'react';
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 import EmojiPicker from 'emoji-picker-react';
+import Alert from 'react-bootstrap/Alert';
 import { Link } from 'react-router-dom';
 import UserApi from '../api/UserApi';
 
 
 export const Signup = () => {
+
+    const [feedbackMessage, setFeedbackMessage] = useState();
+    const [showPassword, setShowPassword] = useState(false);
 
     const [userInfo, setUserInfo] = useState({
         username: "",
@@ -71,7 +76,7 @@ export const Signup = () => {
 
 
         // Call the user api method here
-        UserApi.createUser(userInfo);
+        UserApi.createUser(userInfo, setFeedbackMessage);
 
         // Clear the user info state and clear the input fields
         setUserInfo({
@@ -94,7 +99,10 @@ export const Signup = () => {
 
     return (
         <Container className='p-5'>
-        
+            {feedbackMessage ? (
+            <Alert variant="success" onClose={() => setFeedbackMessage("")} dismissible>
+                <Alert.Heading className='text-center'>{feedbackMessage}</Alert.Heading>
+            </Alert>):(<></>)}
             <Container className='d-flex justify-content-center align-items-center'>
                 <Container>
                     <Form className="p-5" onSubmit={handleSubmit}>
@@ -118,17 +126,23 @@ export const Signup = () => {
                             
                         </Form.Group>
                         <Form.Group className='mb-3'>
+                            <InputGroup>
                             <Form.FloatingLabel label="Password">
                                 <Form.Control 
-                                    type="password" 
+                                    type={showPassword ? "text" : "password"} 
                                     placeholder="Enter password" 
                                     name="password" 
                                     pattern='^(?=.*\d).{8,}$' 
                                     onChange={handleChange} 
                                     ref={passwordRef}
                                     required 
-                                />
+                                    />
+                                
                             </Form.FloatingLabel>
+                            <InputGroup.Text className='btn border m-auto p-3 ' onClick={() => setShowPassword(!showPassword)}>
+                                {showPassword ? <>🙈</> : <>👀</>}
+                            </InputGroup.Text>
+                            </InputGroup>
                             { isValidField.password ? <span>👍</span> : <span>👎</span>}
                             <Form.Text className='px-2'>Password must be at least 8 characters with at least one digit</Form.Text>
                         </Form.Group>
