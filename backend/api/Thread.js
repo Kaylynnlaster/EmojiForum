@@ -5,6 +5,8 @@ const router = express.Router();
 const Thread = require('./../models/Thread.js');
 const User = require('./../models/User');
 
+const generateID = () => Math.random().toString(36).substring(2, 10);
+
 router.get('/:id/thread', async(req, res) => {
     try {
         const thread = await Thread.find({})
@@ -41,6 +43,8 @@ router.post('/:id/thread/create', async(req, res) => {
     const user = await User.findById(id);
     console.log(user)
 
+    let threadid = generateID();
+
 
     //get time stamp
     const date = new Date()
@@ -48,6 +52,7 @@ router.post('/:id/thread/create', async(req, res) => {
 
     //save the thread obj with the user element
     const newThread = new Thread({
+        id: threadid,
         title,
         description,
         createdAt,

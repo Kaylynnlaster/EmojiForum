@@ -28,7 +28,6 @@ router.post("/signup", async (req, res) => {
         })
     }
     else {
-        let id = generateID();
         User.find({username}).then(result => {
             if(result.length) {
                 res.json({
@@ -37,11 +36,13 @@ router.post("/signup", async (req, res) => {
                 })
             } else {
                 //creating new user
-
+                let id = generateID();
+                console.log(id)
                 //password hashing
                 const saltRounds = 10;
                 bcrypt.hash(password, saltRounds). then(hashedPassword => {
                     const newUser = new User({
+                        id,
                         username,
                         password: hashedPassword
                     });
