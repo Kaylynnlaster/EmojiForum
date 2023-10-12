@@ -1,15 +1,19 @@
 const express = require('express')
 const mongoose = require('mongoose')
 
+
 const app = express()
 
 const UserRouter = require('./api/User')
 const ThreadRouter = require('./api/Thread')
+const CommentRouter = require('./api/Comment')
 
 app.use(express.json())
 
-app.use('/user/:id', ThreadRouter)
+app.use('/user/:id/thread/:id', CommentRouter)
+app.use('/user/', ThreadRouter)
 app.use('/user', UserRouter)
+
 
 //routes
 app.get('/', (req,res) => {
