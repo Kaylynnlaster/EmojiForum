@@ -5,8 +5,24 @@ const router = express.Router();
 const Comment = require('./../models/Comment.js');
 
 router.get('/', async(req, res) => {
-    //find the comment by the thread id and then get
-    //all of the comments for it
+    try {
+        const comment = await Comment.find({})
+        res.status(200).json(comment);
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: "could not get comments"})
+    }
+})
+
+router.get('/comment/:id', async(req, res) => {
+    try {
+        const {id} = req.params;
+        const comment = await Comment.findById(id);
+        res.status(200).json(thread)
+    } catch {
+        res.status(500).json({message: error.message})
+    }
 })
 
 router.post('/comment', async(req, res) => {

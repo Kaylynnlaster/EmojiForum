@@ -12,7 +12,7 @@ const CommentRouter = require('./api/Comment')
 
 app.use(express.json())
 
-app.use('/user/:id/thread/:id', CommentRouter)
+app.use('/user/:id/thread/:threadid', CommentRouter)
 app.use('/user/', ThreadRouter)
 app.use('/user', UserRouter)
 
