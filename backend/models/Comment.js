@@ -8,7 +8,6 @@ const CommentSchema = new Schema({
     user: {
         username: String,
     },
-    //save as objectId or something similar
     threadID: String,
     createdAt: Date
 });
