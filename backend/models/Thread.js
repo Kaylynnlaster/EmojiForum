@@ -5,7 +5,9 @@ const Schema = mongoose.Schema;
 const ThreadSchema = new Schema({
     id: String,
     title: String,
-    description : String,
+    description : [{
+        type: String
+    }],
     createdAt : String,
     user: {
         username: String,
