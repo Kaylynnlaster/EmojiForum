@@ -16,7 +16,7 @@ function App() {
       <AuthContextProvider>
       <CustomNavbar />
       <Routes>
-        <Route path="/" exact element={<Signup />} />
+        <Route path="/" exact element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/thread" element={<Thread />} />

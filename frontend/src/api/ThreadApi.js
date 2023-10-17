@@ -19,11 +19,8 @@ const ThreadApi = {
             
             // Deal with the data being returned from the backend here
 
-            const data = await response.json();
-            // setUser(data);
-            console.log(data);
-            console.log(data.message);
-            setFeedbackMessage(data.message);
+            const data = await response
+            return data;
             
             
         } catch (error) {
