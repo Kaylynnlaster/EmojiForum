@@ -7,6 +7,7 @@ import { CustomNavbar } from "./components/CustomNavbar";
 import { Thread } from "./components/Thread";
 import NewThread from "./components/NewThread";
 import NewComment from "./components/NewComment";
+import Footer from "./components/Footer";
 import AuthContextProvider from "./service/AuthContextProvider";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -26,6 +27,7 @@ function App() {
           <Route path="/newcomment" element={<NewComment />} />
           <Route path="/home" element={<Home />} />
         </Routes>
+        <Footer />
       </AuthContextProvider>
     </div>
   );

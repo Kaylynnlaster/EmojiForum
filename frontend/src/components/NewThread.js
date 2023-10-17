@@ -33,39 +33,41 @@ const NewThread = () => {
   };
 
   return (
-    <Container>
-      <Form className="p-5" onSubmit={handleSubmit}>
-        <h1>Create A New Thread</h1>
-        <Form.Group className="my-5">
-          <Form.FloatingLabel label="Title">
-            <Form.Control
-              type="text"
-              placeholder="Enter Thread Title"
-              name="title"
-              required
-            />
-          </Form.FloatingLabel>
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <InputGroup>
-            <Form.FloatingLabel label="Description">
+    <Container className="d-flex justify-content-center align-items-center">
+      <Container className="d-flex justify-content-center">
+        <EmojiPicker />
+      </Container>
+      <Container>
+        <Form className="p-5" onSubmit={handleSubmit}>
+          <h1>Create A New Thread</h1>
+          <Form.Group className="my-5">
+            <Form.FloatingLabel label="Title">
               <Form.Control
                 type="text"
-                placeholder="Description"
-                name="description"
+                placeholder="Enter Thread Title"
+                name="title"
                 required
               />
             </Form.FloatingLabel>
-          </InputGroup>
-        </Form.Group>
-        <div className="my-3">
-          <Button className="w-50" type="submit">
-            Create Thread!
-          </Button>
-        </div>
-      </Form>
-      <Container className="d-flex justify-content-right">
-        <EmojiPicker />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <InputGroup>
+              <Form.FloatingLabel label="Description">
+                <Form.Control
+                  type="text"
+                  placeholder="Description"
+                  name="description"
+                  required
+                />
+              </Form.FloatingLabel>
+            </InputGroup>
+          </Form.Group>
+          <div className="my-3">
+            <Button className="w-50" type="submit">
+              Create Thread!
+            </Button>
+          </div>
+        </Form>
       </Container>
     </Container>
   );
