@@ -36,7 +36,7 @@ const Login = ({ setIsLoggedIn }) => {
             setFeedbackMessage(response.message);
             updateUser(data);
             login();
-            navigate("/thread");
+            navigate("/home");
 
         }
 

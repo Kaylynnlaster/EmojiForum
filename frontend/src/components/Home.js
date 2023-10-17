@@ -3,27 +3,40 @@ import { Emoji } from "emoji-picker-react";
 import Container from "react-bootstrap/esm/Container";
 import "../style/Thread.css";
 import ThreadApi from "../api/ThreadApi";
+import { useAuth } from "../service/AuthContextProvider";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
+
   const [rowData, setRowData] = useState([]);
+
   useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login"); // Redirect to login if not logged in
+    }
     const fetchData = async () => {
       try {
         const response = await ThreadApi.getAllThreads();
         if (!response.ok) {
+          if (response.status === 401) {
+            // Redirect to login page if not logged in
+            navigate("/login");
+            return;
+          }
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log("Fetched data:", data); // Log the data to check its format
+        console.log(data);
         setRowData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
-        // Handle error, show message, or redirect to an error page
       }
     };
-  
+
     fetchData();
-  }, []);
+  }, [isLoggedIn, navigate]);
 
   return (
     <div>
@@ -34,13 +47,15 @@ export const Home = () => {
               <div className="title-content">{thread.title}</div>
             </Container>
             <Container className="content-container">
-              <div className="content-content">
-                {thread.description.split(',').map((code, idx) => (
-                  <p key={idx}>
-                    <Emoji unified={code.trim()} size="50" />
-                  </p>
-                ))}
-              </div>
+              {thread.description.map((desc, descIndex) => (
+                <div key={descIndex}>
+                  {desc.split(",").map((code, idx) => (
+                    <p key={idx}>
+                      <Emoji unified={code.trim()} size="50" />
+                    </p>
+                  ))}
+                </div>
+              ))}
             </Container>
             <Container className="comments-title">
               <div className="title-content">Comments</div>
