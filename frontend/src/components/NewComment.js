@@ -31,31 +31,34 @@ const NewComment = () => {
   };
 
   return (
-    <Container>
-      <Form className="p-5" onSubmit={handleSubmit}>
-        <h1>Create A New Comment</h1>
-        <Form.Group className="mb-3">
-          <InputGroup>
-            <Form.FloatingLabel label="Description">
-              <Form.Control
-                type="text"
-                placeholder="Description"
-                name="description"
-                required
-              />
-            </Form.FloatingLabel>
-          </InputGroup>
-        </Form.Group>
-        <div className="my-3">
-          <Button className="w-50" type="submit">
-            Create Comment!
-          </Button>
-        </div>
-      </Form>
-      <Container className="d-flex justify-content-right">
+    <Container className="d-flex justify-content-center align-items-center">
+      <Container className="d-flex justify-content-center">
         <EmojiPicker />
+      </Container>
+      <Container>
+        <Form className="p-5" onSubmit={handleSubmit}>
+          <h1>Create A New Comment</h1>
+          <Form.Group className="mb-3">
+            <InputGroup>
+              <Form.FloatingLabel label="Description">
+                <Form.Control
+                  type="text"
+                  placeholder="Description"
+                  name="description"
+                  required
+                />
+              </Form.FloatingLabel>
+            </InputGroup>
+          </Form.Group>
+          <div className="my-3">
+            <Button className="w-50" type="submit">
+              Create Comment!
+            </Button>
+          </div>
+        </Form>
       </Container>
     </Container>
   );
 };
+
 export default NewComment;
