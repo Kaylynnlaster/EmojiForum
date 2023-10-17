@@ -5,6 +5,7 @@ import { Home } from "./components/Home";
 import Login from "./components/Login";
 import { CustomNavbar } from "./components/CustomNavbar";
 import { Thread } from "./components/Thread";
+import  NewThread  from "./components/NewThread";
 import AuthContextProvider from "./service/AuthContextProvider";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -20,6 +21,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/thread" element={<Thread />} />
+        <Route path="/newthread" element={<NewThread />} />
         <Route path="/home" element={<Home />} />
 
       </Routes>
