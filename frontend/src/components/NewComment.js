@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Emoji, EmojiStyle } from "emoji-picker-react";
-import "../style/NewThread.css";
-import ThreadApi from "../api/ThreadApi";
+import "../style/NewComment.css";
+import CommentApi from "../api/CommentApi";
 import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -10,42 +10,30 @@ import Alert from "react-bootstrap/Alert";
 import EmojiPicker from "emoji-picker-react";
 import { useNavigate } from "react-router-dom";
 
-const NewThread = () => {
+const NewComment = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const threadInfo = {
-      title: e.target.title.value,
-      description: e.target.description.value,
+    const commentInfo = {
+      content: e.target.content.value,
     };
 
     // Call the api and the login method here
-    const response = await ThreadApi.SaveThread(threadInfo);
+    const response = await CommentApi.SaveComment(commentInfo);
     if (response.ok) {
       const data = await response.json();
       navigate("/");
     }
 
     // Clear input fields from this point on
-    e.target.title.value = "";
-    e.target.description.value = "";
+    e.target.content.value = "";
   };
 
   return (
     <Container>
       <Form className="p-5" onSubmit={handleSubmit}>
-        <h1>Create A New Thread</h1>
-        <Form.Group className="my-5">
-          <Form.FloatingLabel label="Title">
-            <Form.Control
-              type="text"
-              placeholder="Enter Thread Title"
-              name="title"
-              required
-            />
-          </Form.FloatingLabel>
-        </Form.Group>
+        <h1>Create A New Comment</h1>
         <Form.Group className="mb-3">
           <InputGroup>
             <Form.FloatingLabel label="Description">
@@ -60,7 +48,7 @@ const NewThread = () => {
         </Form.Group>
         <div className="my-3">
           <Button className="w-50" type="submit">
-            Create Thread!
+            Create Comment!
           </Button>
         </div>
       </Form>
@@ -70,4 +58,4 @@ const NewThread = () => {
     </Container>
   );
 };
-export default NewThread;
+export default NewComment;
