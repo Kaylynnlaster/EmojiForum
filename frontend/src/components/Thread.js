@@ -1,8 +1,19 @@
+import React, { useState, useEffect } from "react";
 import { Emoji, EmojiStyle } from "emoji-picker-react";
 import Container from "react-bootstrap/esm/Container";
 import "../style/Thread.css";
+import  ThreadApi  from "../api/ThreadApi";
+
 
 export const Thread = () => {
+    const [rowData, setRowData] = useState([]);
+
+    useEffect(() => {
+        ThreadApi.getAllThreads()
+          .then((data) => setRowData(data.reverse())) // Reverse the rowData array
+          .catch((error) => console.error("Error fetching data:", error));
+      }, []);
+
   return (
     <div>
       <Container className="thread-container">

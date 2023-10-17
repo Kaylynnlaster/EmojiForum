@@ -8,11 +8,18 @@ import Alert from 'react-bootstrap/Alert';
 import { Link } from 'react-router-dom';
 import EmojiPicker from 'emoji-picker-react';
 import UserApi from '../api/UserApi';
+import { useAuth } from "../service/AuthContextProvider"; // Import useAuth hook
+import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+
+
+const Login = ({ setIsLoggedIn }) => {
 
     const [feedbackMessage, setFeedbackMessage] = useState();
     const [showPassword, setShowPassword] = useState(false);
+    const {  login, updateUser} = useAuth();
+    const navigate = useNavigate();
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,13 +30,19 @@ export const Login = () => {
         }
 
         // Call the api and the login method here
-        UserApi.getUserByCredentials(userInfo, setFeedbackMessage);
+        const response = await UserApi.getUserByCredentials(userInfo);
+        if (response.ok) {
+            const data = await response.json();  
+            setFeedbackMessage(response.message);
+            updateUser(data);
+            login();
+            navigate("/thread");
+
+        }
 
         // Clear input fields from this point on
         e.target.username.value = ""
         e.target.password.value = ""
-        
-        
     }
 
     return (
@@ -88,5 +101,6 @@ export const Login = () => {
             </Container>
             
         </Container>
-  )
-}
+  );
+};
+export default Login;
