@@ -5,7 +5,7 @@ const backendURI = `http://localhost:${portNumber}/user`;
 
 const UserApi = {
 
-    getUserByCredentials: async (credentials, setFeedbackMessage) => {
+    getUserByCredentials: async (credentials) => {
         try {
             console.log(credentials);
             const response = await fetch(`${backendURI}/login`, {
@@ -23,11 +23,8 @@ const UserApi = {
             
             // Deal with the data being returned from the backend here
 
-            const data = await response.json();
-            // setUser(data);
-            console.log(data);
-            console.log(data.message);
-            setFeedbackMessage(data.message);
+            const data = await response;
+            return data;
             
             
         } catch (error) {
