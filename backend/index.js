@@ -1,16 +1,18 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors');
 
 
 const app = express()
-
+// Use CORS middleware
+app.use(cors());
 const UserRouter = require('./api/User')
 const ThreadRouter = require('./api/Thread')
 const CommentRouter = require('./api/Comment')
 
 app.use(express.json())
 
-app.use('/user/:id/thread/:threadid', CommentRouter)
+app.use('/user/', CommentRouter)
 app.use('/user/', ThreadRouter)
 app.use('/user', UserRouter)
 

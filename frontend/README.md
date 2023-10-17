@@ -2,6 +2,75 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project Structure
+The frontend folder is composed of the following important directories
+
+`/frontend`<br>
+|-- `/src`<br>
+|   |-- `/api`<br>
+|   |-- `/components`<br>
+|   |-- `/styles`<br>
+|-- `/public`<br>
+|   |-- `index.html`<br>
+|-- `package.json`<br>
+|-- `README.md`<br>
+
+### /components
+The components directory contains import pieces used within our application. An example of important pieces are 
+- Login.js: *Represents the user-facing login view*
+- Signup.js: *Represents the user-facing signin view*
+
+In essence, the components directory contains the different "views" that the user will encounter. E.g. Homepage, Threads, replies, etc.
+
+### /api
+The api directory is in charge of following code splitting practices by separating server functions/methods from the views. In other words, the files in the **/api** directory contain methods that are directly in charge with calling the backend endpoints and returning that data to it's corresponding view. 
+
+An example would be the following:
+***UserApi.js***
+```
+const UserApi = {
+
+    getUserByCredentials: async (credentials, setFeedbackMessage) => {
+        try {
+            console.log(credentials);
+            const response = await fetch(`${backendURI}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(credentials)
+            });
+
+            if(!response.ok){
+                throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+
+            
+            // Deal with the data being returned from the backend here
+
+            const data = await response.json();
+            // setUser(data);
+            console.log(data);
+            console.log(data.message);
+            setFeedbackMessage(data.message);
+            
+            
+        } catch (error) {
+            console.error("Error in getUserByCredentials:", error);
+        }
+    }
+```
+The following code is in charge of accessing the /user/login endpoint of the backend service. From there it receives the data and returns it in a way that the application needs. 
+
+An example of this method being called can be found in the components directory
+
+***/components/login.js***
+``` 
+    // Call the api and the login method here
+    UserApi.getUserByCredentials(userInfo, setFeedbackMessage);
+```
+
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -29,42 +98,3 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
