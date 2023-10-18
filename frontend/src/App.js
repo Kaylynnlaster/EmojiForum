@@ -27,8 +27,8 @@ function App() {
           <Route path="/newcomment" element={<NewComment />} />
           <Route path="/home" element={<Home />} />
         </Routes>
-        <Footer />
       </AuthContextProvider>
+      <Footer />
     </div>
   );
 }
