@@ -4,25 +4,26 @@
   align-items: center;
   border: 1px solid lightgray;
   background-color: lightgray;
+  padding: 5px; /* Reduce padding */
 }
 
-.title-title {
-  width: 60%;
-  text-align: center !important;
-  font-weight: 700;
-  padding: 10px;
+.scroll{
+  max-height: 700px;
+  overflow-y: auto; 
 }
-.title-user {
-  width: 20%;
+.commentScroll{
+  max-height: 200px;
+  width: 100%;
+  overflow-y: auto; 
+}
+
+.title-user,
+.title-header,
+.title-date {
+  width: 30%; /* Adjust width for these elements */
   text-align: left !important;
   font-weight: 700;
-  padding: 10px;
-}
-.title-date {
-  width: 20%;
-  text-align: right !important;
-  font-weight: 700;
-  padding: 10px;
+  padding: 5px; /* Reduce padding */
 }
 .title-content {
   font-weight: 100 !important;
@@ -32,13 +33,9 @@
 }
 
 .thread-container {
-  min-height: 500px;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  height: calc(100vh - 120px); /* 100vh - height of navbar and footer */
+  overflow-y: auto; /* Add a vertical scrollbar if content overflows the container */
 }
-
 .content-container {
   min-height: 100px;
   display: flex;
@@ -47,6 +44,7 @@
   border: 1px solid lightgray;
   background-color: white;
   width: 100%;
+  padding: 10px; /* Reduce padding */
 }
 .content-content {
   display: flex;
@@ -70,7 +68,7 @@
 .new-thread {
   text-align: left !important;
   padding: 10px !important;
-  margin-top: 50px !important;
+  margin-top: 15px !important;
 }
 
 .comments-container {
@@ -99,18 +97,12 @@
   flex: 1 0 50%; /* Take up 50% of the item's width */
 }
 
-.comment-username{
-  flex: 1 0 10%; /* Take up 25% of the item's width */
+.comment-username,
+.comment-date {
+  flex: 1 0 30%; /* Adjust width for these elements */
   text-align: left;
   font-weight: 100;
-  padding: 10px;
-
-}
-.comment-date {
-  flex: 1 0 35%; /* Take up 25% of the item's width */
-  text-align: rogjt;
-  font-weight: 100;
-  padding: 10px;       
+  padding: 5px; /* Reduce padding */
 }
 .comment-link{
   width:100%;

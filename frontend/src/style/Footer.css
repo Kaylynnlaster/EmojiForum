@@ -1,4 +1,9 @@
 .FullFooter{
     background-color: #F1F1F1 ;
     justify-content: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }
