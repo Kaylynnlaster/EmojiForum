@@ -18,36 +18,36 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../service/AuthContextProvider";
+import { useLocation } from "react-router-dom";
+
+
 
 const NewComment = () => {
   const navigate = useNavigate();
   const [selectedEmoji, setSelectedEmoji] = useState("1f60a");
   const [inputValue, setInputValue] = useState("");
+  const {  user } = useAuth();
+  const location = useLocation();
+  const threadId = location.state.selectedThreadId;
+
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const commentInfo = {
-      content: e.target.content.value
-       };
-       const response = CommentApi.postComment(userId, threadId, selectedEmoji);
-
     try {
       // Call the API and handle the response
-      const response = await CommentApi.SaveComment(commentInfo);
+      const response = CommentApi.postComment(user.id, threadId, selectedEmoji);
       if (response.ok) {
         const data = await response.json();
-        navigate("/");
+        navigate("/home");
+        return data;
       } else {
         console.error("Error saving comment:", response.status);
       }
     } catch (error) {
       console.error("Error saving comment:", error);
     }
-
-    // Clear input fields from this point on
-    e.target.content.value = "";
   };
 
   const onClick = (emojiData, event) => {
