@@ -69,7 +69,7 @@ export const Home = () => {
     <div>
       <Container className="thread-container">
         <Container className="new-thread">
-          <Button onClick={() => navigate("/newthread")}>New Thread</Button>
+          <Button onClick={() => navigate("/newthread")}>✍️</Button>
         </Container>
         {rowData.reverse().map((thread, index) => (
           <div key={index}>
@@ -133,6 +133,7 @@ export const Home = () => {
                 </Container>
               </div>
             </Collapse>
+            <Container className="space"></Container>
           </div>
         ))}
       </Container>

@@ -4,6 +4,7 @@
   align-items: center;
   border: 1px solid lightgray;
   background-color: lightgray;
+
 }
 
 .title-title {
@@ -33,7 +34,7 @@
 
 .thread-container {
   min-height: 500px;
-  padding: 0;
+  padding: 60px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -55,7 +56,6 @@
   margin-left: 15px;
   padding-left: 20px;
 }
-
 
 .comments-title {
   margin-left: 50px;
@@ -81,6 +81,10 @@
   border: 1px solid lightgray;
   background-color: white;
   width: 100%;
+}
+
+.space {
+  height: 50px;
 }
 .comment-container {
   display: flex;
