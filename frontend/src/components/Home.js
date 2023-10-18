@@ -69,17 +69,19 @@ export const Home = () => {
     <div>
       <Container className="thread-container">
         <Container className="new-thread">
-          <Button onClick={() => navigate("/newthread")}>✍️</Button>
+          <Button onClick={() => navigate("/newthread")}> New Thread!✍️</Button>
         </Container>
         {[...rowData].reverse().map((thread, index) => (
           <div key={index}>
             <Container className="title-container">
               <div className="title-user">
-                User:<p className="title-content">{thread.user.username}</p>
+                User 👽 :<p className="title-content">{thread.user.username}</p>
               </div>
-              <div className="title-header">{thread.title}</div>
+              <div className="title-header">
+                <h2>{thread.title}</h2>
+              </div>
               <div className="title-date">
-                Posted On:<p className="title-content">{thread.createdAt}</p>
+                Posted On 📅:<p className="title-content">{thread.createdAt}</p>
               </div>
               <div className="title-replies">
                 # of Comments:
