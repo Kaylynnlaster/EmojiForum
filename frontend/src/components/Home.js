@@ -103,7 +103,7 @@ export const Home = () => {
               {thread.commentsCount === 0 ? (
                 <Button
                   onClick={() =>
-                    navigate("/reply", {
+                    navigate("/newcomment", {
                       state: { selectedThreadId: thread._id },
                     })
                   }
@@ -170,7 +170,7 @@ const AsyncComments = ({ userId, threadId }) => {
         {" "}
         <Button
           onClick={() =>
-            navigate("/reply", {
+            navigate("/newcomment", {
               state: { selectedThreadId: threadId },
             })
           }
