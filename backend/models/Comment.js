@@ -4,11 +4,12 @@ const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
     id: String,
-    content: String,
+    content: [{
+        type: String
+    }],
     user: {
         username: String,
     },
-    //save as objectId or something similar
     threadID: String,
     createdAt: Date
 });
