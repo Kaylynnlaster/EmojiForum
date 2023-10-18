@@ -17,9 +17,6 @@ export const CustomNavbar = () => {
           <Nav.Link className="px-4" href="/login">
             ➡️💻❓
           </Nav.Link>
-          <Nav.Link className="px-4" href="/newthread">
-            ✍️
-          </Nav.Link>
           {/* Any additional links can be added here */}
         </Nav>
       </Container>
