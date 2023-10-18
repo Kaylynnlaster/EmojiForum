@@ -71,7 +71,7 @@ export const Home = () => {
         <Container className="new-thread">
           <Button onClick={() => navigate("/newthread")}>New Thread</Button>
         </Container>
-        {rowData.reverse().map((thread, index) => (
+        {[...rowData].reverse().map((thread, index) => (
           <div key={index}>
             <Container className="title-container">
               <div className="title-user">
@@ -152,7 +152,6 @@ const AsyncComments = ({ userId, threadId }) => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const commentsData = await response.json();
-        console.log(commentsData);
         setComments(commentsData);
       } catch (error) {
         console.error("Error fetching comments:", error);
@@ -182,7 +181,7 @@ const AsyncComments = ({ userId, threadId }) => {
       {comments.map((comment, commentIndex) => (
         <div className="comment-item" key={commentIndex}>
           <div className="comment-content">
-            <Emoji unified="1f926-200d-2642-fe0f" size="50" />
+            <Emoji unified={comment.content[0]} size="50" />
           </div>
           <div className="comment-username">
             User:<p className="title-content">{comment.user.username}</p>

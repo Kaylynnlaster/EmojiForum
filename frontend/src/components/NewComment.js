@@ -21,23 +21,29 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../service/AuthContextProvider";
 import { useLocation } from "react-router-dom";
 
-
-
 const NewComment = () => {
   const navigate = useNavigate();
-  const [selectedEmoji, setSelectedEmoji] = useState("1f60a");
+  const [selectedEmoji, setSelectedEmoji] = useState("");
+  const [selectedEmojiData, setSelectedEmojiData] = useState("");
+
   const [inputValue, setInputValue] = useState("");
-  const {  user } = useAuth();
+  const { user } = useAuth();
   const location = useLocation();
   const threadId = location.state.selectedThreadId;
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Call the API and handle the response
-      const response = CommentApi.postComment(user.id, threadId, selectedEmoji);
+      const commentInfo = {
+        content: selectedEmojiData.unified,
+      };
+      const response = await CommentApi.postComment(
+        user.data[0]._id,
+        threadId,
+        selectedEmojiData.unified
+      );
+      console.log(response);
+
       if (response.ok) {
         const data = await response.json();
         navigate("/home");
@@ -51,21 +57,28 @@ const NewComment = () => {
   };
 
   const onClick = (emojiData, event) => {
+    setSelectedEmojiData(emojiData);
     setSelectedEmoji(emojiData.emoji); // Set the selected emoji
   };
 
   return (
     <Container className="d-flex justify-content-center align-items-center">
       <Container className="d-flex justify-content-center">
-      <EmojiPicker onEmojiClick={onClick} autoFocusSearch={false} emojiStyle={EmojiStyle.NATIVE} />
-
+        <EmojiPicker
+          onEmojiClick={onClick}
+          autoFocusSearch={false}
+          emojiStyle={EmojiStyle.NATIVE}
+        />
       </Container>
       <Container>
         <Form className="p-5" onSubmit={handleSubmit}>
           <h1>Create A New Comment</h1>
           <Form.Group className="mb-3">
             <InputGroup>
-            <Form.FloatingLabel label={<Emoji unified={selectedEmoji}  />} className="mb-3">
+              <Form.FloatingLabel
+                label={<Emoji unified={selectedEmoji} />}
+                className="mb-3"
+              >
                 <Form.Control
                   type="text"
                   placeholder="Description"
