@@ -7,6 +7,8 @@ import CommentApi from "../api/CommentApi";
 import { useAuth } from "../service/AuthContextProvider";
 import { useNavigate } from "react-router-dom";
 import title from "../HeroTitle.png";
+import { format, parseISO } from 'date-fns';
+
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -15,13 +17,14 @@ export const Home = () => {
   const [rowData, setRowData] = useState([]);
 
   const fetchData = async () => {
+    if (!isLoggedIn) {
+      navigate("/login"); // Redirect to login page if not logged in
+      return;
+    }
+
     try {
       const response = await ThreadApi.getAllThreads();
       if (!response.ok) {
-        if (response.status === 401) {
-          navigate("/login"); // Redirect to login page if not logged in
-          return;
-        }
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const threads = await response.json();
@@ -66,6 +69,8 @@ export const Home = () => {
     }));
   };
 
+  
+
   return (
     <div>
       <Container className="Hero">
@@ -89,7 +94,7 @@ export const Home = () => {
       </Container>
       <div>
         <Container className="thread-container">
-          {rowData.reverse().map((thread, index) => (
+        {[...rowData].reverse().map((thread, index) => (
             <div key={index}>
               <Container className="title-container">
                 <div className="title-user">
@@ -202,19 +207,21 @@ const AsyncComments = ({ userId, threadId }) => {
           New Comment
         </Button>
       </div>
-      {comments.map((comment, commentIndex) => (
-        <div className="comment-item" key={commentIndex}>
-          <div className="comment-content">
-            <Emoji unified={comment.content[0]} size="50" />
+      <div className="commentScroll">
+        {comments.map((comment, commentIndex) => (
+          <div className="comment-item" key={commentIndex}>
+            <div className="comment-content">
+              <Emoji unified={comment.content[0]} size="50" />
+            </div>
+            <div className="comment-username">
+              User:<p className="title-content">{comment.user.username}</p>
+            </div>
+            <div className="comment-date">
+              Posted On:<p className="title-content">{format(parseISO(comment.createdAt), 'MM/dd/yyyy')}</p>
+            </div>
           </div>
-          <div className="comment-username">
-            User:<p className="title-content">{comment.user.username}</p>
-          </div>
-          <div className="comment-date">
-            Posted On:<p className="title-content">{comment.createdAt}</p>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
