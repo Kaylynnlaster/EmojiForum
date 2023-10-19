@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'myFont';
+  src: url('../junegullrg.otf');
+}
+
+* {
+  font-family: myFont;
+}
+
 .title-container {
   display: flex;
   justify-content: space-between;
