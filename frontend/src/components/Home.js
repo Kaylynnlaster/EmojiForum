@@ -6,6 +6,7 @@ import ThreadApi from "../api/ThreadApi";
 import CommentApi from "../api/CommentApi";
 import { useAuth } from "../service/AuthContextProvider";
 import { useNavigate } from "react-router-dom";
+import title from "../HeroTitle.png";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -68,20 +69,40 @@ export const Home = () => {
 
   return (
     <div>
-      <Container className="thread-container">
-        <Container className="new-thread">
-          <Button onClick={() => navigate("/newthread")}>New Thread</Button>
-        </Container>
-        <div className="scroll">
-          {[...rowData].reverse().map((thread, index) => (
+      <Container className="Hero">
+        <div className="heroTitle">
+          <img className="image4" src={title} alt="Title" />
+        </div>
+        <div className="heroContent">
+          <h2>Welcome to the Emoji Forum App!</h2>
+          <h3>
+            Here you can create Threads using Emoji's and even respond to your
+            favorite ones!
+          </h3>
+          <h3>Have Fun and Emoji On!👨🏼‍🎤🤘</h3>
+          <Container>
+            <Button onClick={() => navigate("/newthread")}>
+              {" "}
+              New Thread!✍️
+            </Button>
+          </Container>
+        </div>
+      </Container>
+      <div>
+        <Container className="thread-container">
+          {rowData.reverse().map((thread, index) => (
             <div key={index}>
               <Container className="title-container">
                 <div className="title-user">
-                  User:<p className="title-content">{thread.user.username}</p>
+                  User 👽 :
+                  <p className="title-content">{thread.user.username}</p>
                 </div>
-                <div className="title-header">{thread.title}</div>
+                <div className="title-header">
+                  <h2>{thread.title}</h2>
+                </div>
                 <div className="title-date">
-                  Posted On:<p className="title-content">{thread.createdAt}</p>
+                  Posted On 📅:
+                  <p className="title-content">{thread.createdAt}</p>
                 </div>
                 <div className="title-replies">
                   # of Comments:
@@ -135,10 +156,11 @@ export const Home = () => {
                   </Container>
                 </div>
               </Collapse>
+              <Container className="space"></Container>
             </div>
           ))}
-        </div>
-      </Container>
+        </Container>
+      </div>
     </div>
   );
 };

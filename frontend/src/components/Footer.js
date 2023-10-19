@@ -1,18 +1,20 @@
 import React from "react";
 import "../style/Footer.css";
-import Container from "react-bootstrap/esm/Container";
 
-const CustFooter = () => {
+function Footer() {
   return (
-    <footer className="FullFooter">
-      <Container className="">
-        <h1>The Forum for Emoji Lovers</h1>
-        <div className="Content">
-          <h3>Copyright &#169;</h3>
+    <div className="main-footer">
+      <div className="containerff">
+        <h2> The Forum App for Emoji Lovers! ❤️💙💚</h2>
+        {/* Footer Bottom */}
+        <div className="footer-bottom">
+          <p className="text-xs-center">
+            &copy;{new Date().getFullYear} Emoji Forum App - All rights Reserved
+          </p>
         </div>
-      </Container>
-    </footer>
+      </div>
+    </div>
   );
-};
+}
 
-export default CustFooter;
+export default Footer;

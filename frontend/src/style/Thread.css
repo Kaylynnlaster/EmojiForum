@@ -1,15 +1,34 @@
+@font-face {
+  font-family: 'myFont';
+  src: url('../junegullrg.otf');
+}
+
+* {
+  font-family: myFont;
+}
+
 .title-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 1px solid lightgray;
   background-color: lightgray;
-  padding: 5px; /* Reduce padding */
 }
 
-.scroll{
-  max-height: 700px;
-  overflow-y: auto; 
+.Hero {
+  text-align: center;
+  margin-top: 5%;
+}
+
+.image4 {
+  height: 250px;
+  width: auto;
+}
+.title-title {
+  width: 60%;
+  text-align: center !important;
+  font-weight: 700;
+  padding: 10px;
 }
 .commentScroll{
   max-height: 200px;
@@ -33,9 +52,11 @@
 }
 
 .thread-container {
-  height: calc(100vh - 120px); /* 100vh - height of navbar and footer */
-  overflow-y: auto; /* Add a vertical scrollbar if content overflows the container */
-}
+  min-height: 500px;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 .content-container {
   min-height: 100px;
   display: flex;
@@ -53,7 +74,6 @@
   margin-left: 15px;
   padding-left: 20px;
 }
-
 
 .comments-title {
   margin-left: 50px;
@@ -79,6 +99,10 @@
   border: 1px solid lightgray;
   background-color: white;
   width: 100%;
+}
+
+.space {
+  height: 50px;
 }
 .comment-container {
   display: flex;
