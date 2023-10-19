@@ -7,6 +7,8 @@ import CommentApi from "../api/CommentApi";
 import { useAuth } from "../service/AuthContextProvider";
 import { useNavigate } from "react-router-dom";
 import title from "../HeroTitle.png";
+import { format, parseISO } from 'date-fns';
+
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -67,6 +69,8 @@ export const Home = () => {
     }));
   };
 
+  
+
   return (
     <div>
       <Container className="Hero">
@@ -90,7 +94,7 @@ export const Home = () => {
       </Container>
       <div>
         <Container className="thread-container">
-          {rowData.reverse().map((thread, index) => (
+        {[...rowData].reverse().map((thread, index) => (
             <div key={index}>
               <Container className="title-container">
                 <div className="title-user">
@@ -213,7 +217,7 @@ const AsyncComments = ({ userId, threadId }) => {
               User:<p className="title-content">{comment.user.username}</p>
             </div>
             <div className="comment-date">
-              Posted On:<p className="title-content">{comment.createdAt}</p>
+              Posted On:<p className="title-content">{format(parseISO(comment.createdAt), 'MM/dd/yyyy')}</p>
             </div>
           </div>
         ))}
