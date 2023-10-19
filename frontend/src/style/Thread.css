@@ -7,6 +7,15 @@
 
 }
 
+.Hero {
+  text-align: center;
+  margin-top: 5%;
+}
+
+.image4 {
+  height: 250px;
+  width: auto;
+}
 .title-title {
   width: 60%;
   text-align: center !important;
