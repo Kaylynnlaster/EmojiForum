@@ -36,15 +36,16 @@ const CommentApi = {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(emojiCode)
+            body: JSON.stringify({ content: emojiCode }),
+            
+
         })
 
         if(!response.ok){
             throw new Error(`HTTP error! Status: ${response.status}`)
         }
 
-        const data = await response.json()
-        return data;
+        return response;
     } catch (error) {
             
     }

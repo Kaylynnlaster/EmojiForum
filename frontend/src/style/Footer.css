@@ -1,4 +1,10 @@
-.FullFooter{
+.containerff {
+    left:0;
+    bottom:0;
+    right:0;
+}
+.main-footer{
     background-color: #F1F1F1 ;
-    justify-content: center;
+    text-align: center;
+    padding-bottom:20px;
 }

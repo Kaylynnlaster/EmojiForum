@@ -1,3 +1,12 @@
+@font-face {
+  font-family: "myFont";
+  src: url("../junegullrg.otf");
+}
+
+* {
+  font-family: myFont;
+}
+
 .title-container {
   display: flex;
   justify-content: space-between;
@@ -6,23 +15,34 @@
   background-color: lightgray;
 }
 
+.Hero {
+  text-align: center;
+  margin-top: 5%;
+}
+
+.image4 {
+  height: 250px;
+  width: auto;
+}
 .title-title {
   width: 60%;
   text-align: center !important;
   font-weight: 700;
   padding: 10px;
 }
-.title-user {
-  width: 20%;
+.commentScroll {
+  max-height: 200px;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.title-user,
+.title-header,
+.title-date {
+  width: 30%; /* Adjust width for these elements */
   text-align: left !important;
   font-weight: 700;
-  padding: 10px;
-}
-.title-date {
-  width: 20%;
-  text-align: right !important;
-  font-weight: 700;
-  padding: 10px;
+  padding: 5px; /* Reduce padding */
 }
 .title-content {
   font-weight: 100 !important;
@@ -33,12 +53,11 @@
 
 .thread-container {
   min-height: 500px;
-  padding: 0;
+  padding: 60px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
-
 .content-container {
   min-height: 100px;
   display: flex;
@@ -47,6 +66,7 @@
   border: 1px solid lightgray;
   background-color: white;
   width: 100%;
+  padding: 10px; /* Reduce padding */
 }
 .content-content {
   display: flex;
@@ -55,7 +75,6 @@
   margin-left: 15px;
   padding-left: 20px;
 }
-
 
 .comments-title {
   margin-left: 50px;
@@ -70,7 +89,7 @@
 .new-thread {
   text-align: left !important;
   padding: 10px !important;
-  margin-top: 50px !important;
+  margin-top: 15px !important;
 }
 
 .comments-container {
@@ -81,6 +100,10 @@
   border: 1px solid lightgray;
   background-color: white;
   width: 100%;
+}
+
+.space {
+  height: 50px;
 }
 .comment-container {
   display: flex;
@@ -99,20 +122,13 @@
   flex: 1 0 50%; /* Take up 50% of the item's width */
 }
 
-.comment-username{
-  flex: 1 0 10%; /* Take up 25% of the item's width */
+.comment-username,
+.comment-date {
+  flex: 1 0 30%; /* Adjust width for these elements */
   text-align: left;
   font-weight: 100;
-  padding: 10px;
-
+  padding: 5px; /* Reduce padding */
 }
-.comment-date {
-  flex: 1 0 35%; /* Take up 25% of the item's width */
-  text-align: rogjt;
-  font-weight: 100;
-  padding: 10px;       
+.comment-link {
+  width: 100%;
 }
-.comment-link{
-  width:100%;
-}
-
